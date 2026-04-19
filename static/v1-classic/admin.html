@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin – Charlotte &amp; William</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Lato', sans-serif; background-color: #f5f0e8; color: #4a3728; }
+    h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+    .gold { color: #c9a96e; }
+    .bg-gold { background-color: #c9a96e; }
+    .sidebar { background: #3b2d1f; }
+    .stat-card { background: #fff; border-left: 4px solid #c9a96e; }
+    table { width: 100%; border-collapse: collapse; }
+    thead { background: #f5f0e8; }
+    th { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: #7a6248; padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid #e8dcc8; }
+    td { padding: 0.85rem 1rem; border-bottom: 1px solid #f0e8d8; font-size: 0.9rem; }
+    tr:hover td { background: #fdf9f3; }
+    .badge { display: inline-block; border-radius: 100px; padding: 0.15rem 0.65rem; font-size: 0.72rem; font-weight: 700; }
+    .badge-yes { background: #d4edda; color: #2d6a4f; }
+    .badge-no { background: #f8d7da; color: #842029; }
+    input[type="text"] { border: 1px solid #d8c9a8; border-radius: 4px; padding: 0.5rem 0.8rem; font-family: 'Lato', sans-serif; font-size: 0.9rem; color: #4a3728; background: #fff; }
+    input[type="text"]:focus { outline: none; border-color: #c9a96e; box-shadow: 0 0 0 2px rgba(201,169,110,0.15); }
+    .note-preview { max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #7a6248; }
+    .logout-btn { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: #c9a96e; background: transparent; border: 1px solid #c9a96e; padding: 0.35rem 0.85rem; border-radius: 2px; cursor: pointer; }
+    .logout-btn:hover { background: #c9a96e; color: white; }
+  </style>
+</head>
+<body>
+  <div class="flex min-h-screen">
+
+    <!-- Sidebar -->
+    <aside class="sidebar w-56 p-6 flex flex-col flex-shrink-0">
+      <div class="mb-8">
+        <h2 class="text-lg italic text-white" style="font-family:'Playfair Display',serif;">Charlotte &amp; William</h2>
+        <p class="text-xs mt-1" style="color:#a08060; letter-spacing:0.12em;">Oct 18, 2026</p>
+      </div>
+      <nav class="flex-1 space-y-1">
+        <a href="#" class="flex items-center gap-3 px-3 py-2 rounded text-sm font-medium" style="background:rgba(201,169,110,0.15); color:#c9a96e;">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18"/></svg>
+          Dashboard
+        </a>
+        <a href="#" class="flex items-center gap-3 px-3 py-2 rounded text-sm" style="color:#7a6050;">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.768-.231-1.48-.628-2.063M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.768.231-1.48.628-2.063m0 0a5.002 5.002 0 019.744 0"/></svg>
+          Guest List
+        </a>
+        <a href="#" class="flex items-center gap-3 px-3 py-2 rounded text-sm" style="color:#7a6050;">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          Reports
+        </a>
+      </nav>
+      <div class="mt-auto pt-4 border-t" style="border-color:#2a1f12;">
+        <a href="rsvp.html?token=demo" class="block text-xs mb-3" style="color:#7a6050;">← Preview Guest RSVP</a>
+        <button class="logout-btn">Sign Out</button>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="flex-1 p-8 overflow-auto">
+
+      <!-- Top bar -->
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <h1 class="text-2xl" style="font-family:'Playfair Display',serif;">RSVP Dashboard</h1>
+          <p class="text-sm mt-0.5" style="color:#9a7a60;">Logged in as <strong>admin</strong> · <em>Demo mode — no server</em></p>
+        </div>
+        <div class="text-xs text-gray-400">Last updated: just now</div>
+      </div>
+
+      <!-- Stat Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
+        <div class="stat-card rounded-lg p-5 shadow-sm">
+          <p class="text-xs uppercase tracking-wider mb-1" style="color:#9a7a60;">Total Invited</p>
+          <p class="text-3xl font-bold" style="font-family:'Playfair Display',serif; color:#4a3728;">300</p>
+          <p class="text-xs mt-1" style="color:#b09070;">Pre-populated guest list</p>
+        </div>
+        <div class="stat-card rounded-lg p-5 shadow-sm">
+          <p class="text-xs uppercase tracking-wider mb-1" style="color:#9a7a60;">Total Responded</p>
+          <p class="text-3xl font-bold" style="font-family:'Playfair Display',serif; color:#4a3728;">187</p>
+          <p class="text-xs mt-1" style="color:#b09070;">62% response rate</p>
+        </div>
+        <div class="stat-card rounded-lg p-5 shadow-sm">
+          <p class="text-xs uppercase tracking-wider mb-1" style="color:#9a7a60;">Expected Guests</p>
+          <p class="text-3xl font-bold" style="font-family:'Playfair Display',serif; color:#c9a96e;">412</p>
+          <p class="text-xs mt-1" style="color:#b09070;">Sum of all attendee counts</p>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+        <div class="flex items-center justify-between px-5 py-4 border-b" style="border-color:#f0e8d8;">
+          <h2 class="text-base font-semibold" style="font-family:'Playfair Display',serif;">Guest Responses</h2>
+          <input type="text" placeholder="Search guests…" id="search-input" class="text-sm" style="width:200px;" onkeyup="filterTable()" />
+        </div>
+        <div class="overflow-x-auto">
+          <table id="response-table">
+            <thead>
+              <tr>
+                <th>Guest Name</th>
+                <th>Attending</th>
+                <th>Party Size</th>
+                <th>Dietary</th>
+                <th>Note</th>
+                <th>Submitted</th>
+              </tr>
+            </thead>
+            <tbody id="table-body">
+              <tr>
+                <td class="font-medium">John &amp; Jane Smith</td>
+                <td><span class="badge badge-yes">Attending</span></td>
+                <td>2</td>
+                <td>None</td>
+                <td class="note-preview" title="We are so excited to celebrate with you!">We are so excited to celebrate with you!</td>
+                <td style="color:#9a7a60; font-size:0.8rem;">Apr 5, 2026</td>
+              </tr>
+              <tr>
+                <td class="font-medium">Robert &amp; Mary Johnson</td>
+                <td><span class="badge badge-yes">Attending</span></td>
+                <td>4</td>
+                <td>Gluten-free (2)</td>
+                <td class="note-preview" title="Congratulations! Can't wait!">Congratulations! Can't wait!</td>
+                <td style="color:#9a7a60; font-size:0.8rem;">Apr 6, 2026</td>
+              </tr>
+              <tr>
+                <td class="font-medium">Emily Chen</td>
+                <td><span class="badge badge-yes">Attending</span></td>
+                <td>1</td>
+                <td>Vegetarian</td>
+                <td class="note-preview" title="Wishing you both all the happiness!">Wishing you both all the happiness!</td>
+                <td style="color:#9a7a60; font-size:0.8rem;">Apr 7, 2026</td>
+              </tr>
+              <tr>
+                <td class="font-medium">Michael &amp; Sarah Brown</td>
+                <td><span class="badge badge-no">Declined</span></td>
+                <td>—</td>
+                <td>—</td>
+                <td class="note-preview" title="So sorry we can't make it. Sending love!">So sorry we can't make it. Sending love!</td>
+                <td style="color:#9a7a60; font-size:0.8rem;">Apr 8, 2026</td>
+              </tr>
+              <tr>
+                <td class="font-medium">The Williams Family</td>
+                <td><span class="badge badge-yes">Attending</span></td>
+                <td>5</td>
+                <td>Nut allergy (1 child)</td>
+                <td class="note-preview" title="We are so thrilled for you both!">We are so thrilled for you both!</td>
+                <td style="color:#9a7a60; font-size:0.8rem;">Apr 9, 2026</td>
+              </tr>
+              <tr>
+                <td class="font-medium">David &amp; Lisa Park</td>
+                <td><span class="badge badge-yes">Attending</span></td>
+                <td>2</td>
+                <td>None</td>
+                <td class="note-preview" title="Looking forward to dancing the night away!">Looking forward to dancing the night away!</td>
+                <td style="color:#9a7a60; font-size:0.8rem;">Apr 10, 2026</td>
+              </tr>
+              <tr>
+                <td class="font-medium">Grace Thompson</td>
+                <td><span class="badge badge-no">Declined</span></td>
+                <td>—</td>
+                <td>—</td>
+                <td class="note-preview" title="Prior commitment, but sending heartfelt congratulations!">Prior commitment, but sending heartfelt congratulations!</td>
+                <td style="color:#9a7a60; font-size:0.8rem;">Apr 11, 2026</td>
+              </tr>
+              <tr>
+                <td class="font-medium">James &amp; Patricia Wilson</td>
+                <td><span class="badge badge-yes">Attending</span></td>
+                <td>3</td>
+                <td>Vegan (1)</td>
+                <td class="note-preview" title="Can't believe the day is finally here!">Can't believe the day is finally here!</td>
+                <td style="color:#9a7a60; font-size:0.8rem;">Apr 12, 2026</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="px-5 py-3 text-xs" style="color:#9a7a60; border-top: 1px solid #f0e8d8;">Showing 8 of 187 responses · <a href="#" style="color:#c9a96e;">Export CSV</a></div>
+      </div>
+
+      <!-- Back link -->
+      <div class="mt-6 text-center">
+        <a href="../index.html" class="text-xs hover:underline" style="color:#9a7a60;">← Back to dev menu</a>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    function filterTable() {
+      const filter = document.getElementById('search-input').value.toLowerCase();
+      const rows = document.querySelectorAll('#table-body tr');
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(filter) ? '' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>

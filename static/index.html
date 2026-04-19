@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedding RSVP – Dev Menu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen py-12 px-4">
+  <div class="max-w-4xl mx-auto">
+
+    <!-- Header -->
+    <div class="text-center mb-10">
+      <div class="inline-block bg-white rounded-2xl shadow px-8 py-6 mb-4">
+        <h1 class="text-3xl font-bold text-gray-800">💍 Wedding RSVP</h1>
+        <p class="text-gray-500 mt-1">Developer Preview – UI Version Selector</p>
+      </div>
+      <p class="text-sm text-gray-400">5 different design variations. Each has a guest RSVP page and an admin dashboard.</p>
+    </div>
+
+    <!-- Version Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- V1 Classic Elegant -->
+      <div class="card bg-white rounded-2xl shadow-md p-6 flex flex-col">
+        <div class="w-12 h-12 rounded-full mb-4 flex items-center justify-center text-2xl" style="background:#f5ebe0;">🕊️</div>
+        <h2 class="text-lg font-semibold text-gray-800 mb-1">V1 – Classic Elegant</h2>
+        <p class="text-sm text-gray-500 mb-4 flex-1">Traditional wedding invitation style. Serif typography, cream &amp; gold palette, timeless romance.</p>
+        <div class="flex gap-2 mt-auto">
+          <a href="v1-classic/rsvp.html?token=550e8400-e29b-41d4-a716-446655440000"
+             class="flex-1 text-center py-2 rounded-lg text-sm font-medium text-white"
+             style="background:#c9a96e;">Guest RSVP</a>
+          <a href="v1-classic/admin.html"
+             class="flex-1 text-center py-2 rounded-lg text-sm font-medium border border-gray-300 text-gray-600 hover:bg-gray-50">Admin</a>
+        </div>
+      </div>
+
+      <!-- V2 Modern Minimalist -->
+      <div class="card bg-white rounded-2xl shadow-md p-6 flex flex-col">
+        <div class="w-12 h-12 rounded-full mb-4 flex items-center justify-center text-2xl" style="background:#e8f5e9;">🌿</div>
+        <h2 class="text-lg font-semibold text-gray-800 mb-1">V2 – Modern Minimalist</h2>
+        <p class="text-sm text-gray-500 mb-4 flex-1">Clean, gallery-style design. Lots of whitespace, sage green accents, contemporary sans-serif.</p>
+        <div class="flex gap-2 mt-auto">
+          <a href="v2-minimal/rsvp.html?token=550e8400-e29b-41d4-a716-446655440000"
+             class="flex-1 text-center py-2 rounded-lg text-sm font-medium text-white"
+             style="background:#6b9e78;">Guest RSVP</a>
+          <a href="v2-minimal/admin.html"
+             class="flex-1 text-center py-2 rounded-lg text-sm font-medium border border-gray-300 text-gray-600 hover:bg-gray-50">Admin</a>
+        </div>
+      </div>
+
+      <!-- V3 Rustic Botanical -->
+      <div class="card bg-white rounded-2xl shadow-md p-6 flex flex-col">
+        <div class="w-12 h-12 rounded-full mb-4 flex items-center justify-center text-2xl" style="background:#fdf3e7;">🌻</div>
+        <h2 class="text-lg font-semibold text-gray-800 mb-1">V3 – Rustic Botanical</h2>
+        <p class="text-sm text-gray-500 mb-4 flex-1">Garden party warmth. Earthy terracotta, botanical greens, cozy textures and organic forms.</p>
+        <div class="flex gap-2 mt-auto">
+          <a href="v3-rustic/rsvp.html?token=550e8400-e29b-41d4-a716-446655440000"
+             class="flex-1 text-center py-2 rounded-lg text-sm font-medium text-white"
+             style="background:#8b5e3c;">Guest RSVP</a>
+          <a href="v3-rustic/admin.html"
+             class="flex-1 text-center py-2 rounded-lg text-sm font-medium border border-gray-300 text-gray-600 hover:bg-gray-50">Admin</a>
+        </div>
+      </div>
+
+      <!-- V4 Dark Romantic -->
+      <div class="card bg-white rounded-2xl shadow-md p-6 flex flex-col">
+        <div class="w-12 h-12 rounded-full mb-4 flex items-center justify-center text-2xl" style="background:#f3e5f5;">✨</div>
+        <h2 class="text-lg font-semibold text-gray-800 mb-1">V4 – Dark Romantic</h2>
+        <p class="text-sm text-gray-500 mb-4 flex-1">Evening gala luxury. Deep navy/charcoal background, champagne gold accents, dramatic elegance.</p>
+        <div class="flex gap-2 mt-auto">
+          <a href="v4-dark/rsvp.html?token=550e8400-e29b-41d4-a716-446655440000"
+             class="flex-1 text-center py-2 rounded-lg text-sm font-medium text-white"
+             style="background:#3d2b5e;">Guest RSVP</a>
+          <a href="v4-dark/admin.html"
+             class="flex-1 text-center py-2 rounded-lg text-sm font-medium border border-gray-300 text-gray-600 hover:bg-gray-50">Admin</a>
+        </div>
+      </div>
+
+      <!-- V5 Playful Vibrant -->
+      <div class="card bg-white rounded-2xl shadow-md p-6 flex flex-col">
+        <div class="w-12 h-12 rounded-full mb-4 flex items-center justify-center text-2xl" style="background:#fce4ec;">🎉</div>
+        <h2 class="text-lg font-semibold text-gray-800 mb-1">V5 – Playful Vibrant</h2>
+        <p class="text-sm text-gray-500 mb-4 flex-1">Fun and energetic. Bold coral &amp; pink, rounded bubbly shapes, lively modern personality.</p>
+        <div class="flex gap-2 mt-auto">
+          <a href="v5-playful/rsvp.html?token=550e8400-e29b-41d4-a716-446655440000"
+             class="flex-1 text-center py-2 rounded-lg text-sm font-medium text-white"
+             style="background:#ec4899;">Guest RSVP</a>
+          <a href="v5-playful/admin.html"
+             class="flex-1 text-center py-2 rounded-lg text-sm font-medium border border-gray-300 text-gray-600 hover:bg-gray-50">Admin</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Legend -->
+    <div class="mt-10 bg-white rounded-2xl shadow p-6 text-sm text-gray-600">
+      <h3 class="font-semibold text-gray-800 mb-2">ℹ️ How to use</h3>
+      <ul class="list-disc list-inside space-y-1">
+        <li><strong>Guest RSVP</strong> — Opens the page a guest would see after scanning their QR code. Token is pre-filled in the URL for demo purposes.</li>
+        <li><strong>Admin</strong> — Opens the admin dashboard with mock data (no login required in demo).</li>
+        <li>All pages are fully static — no server needed. Just open in any browser.</li>
+      </ul>
+    </div>
+
+    <p class="text-center text-xs text-gray-400 mt-6">Generated from PLAN.md · Static Demo</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RSVP – Charlotte &amp; William</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #f8faf8; color: #1a1a1a; }
+    .sage { color: #6b9e78; }
+    .bg-sage { background-color: #6b9e78; }
+    input, textarea, select {
+      border: 1.5px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 0.7rem 1rem;
+      width: 100%;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      background: #fff;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: #6b9e78;
+      box-shadow: 0 0 0 3px rgba(107,158,120,0.12);
+    }
+    label { font-size: 0.78rem; font-weight: 500; color: #666; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 0.4rem; }
+    .btn { background: #6b9e78; color: white; border: none; border-radius: 8px; padding: 0.8rem 2rem; font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 500; cursor: pointer; width: 100%; transition: background 0.15s, transform 0.1s; }
+    .btn:hover { background: #578565; transform: translateY(-1px); }
+    #loading-state, #success-state { display: none; }
+    #form-state { display: block; }
+    .radio-group { display: flex; gap: 0.75rem; }
+    .radio-opt { flex: 1; }
+    .radio-opt input[type="radio"] { display: none; }
+    .radio-opt label {
+      display: flex; align-items: center; justify-content: center;
+      border: 1.5px solid #e0e0e0; border-radius: 8px;
+      padding: 0.7rem; cursor: pointer; text-align: center;
+      transition: all 0.15s; font-size: 0.9rem; font-weight: 400;
+      text-transform: none; letter-spacing: 0; color: #555;
+    }
+    .radio-opt input[type="radio"]:checked + label { border-color: #6b9e78; background: #f0f7f1; color: #3d6b48; font-weight: 500; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-start py-12 px-4">
+
+  <div class="w-full max-w-md">
+
+    <!-- Top line -->
+    <div class="w-8 h-0.5 bg-sage mx-auto mb-8"></div>
+
+    <!-- Heading -->
+    <div class="text-center mb-10">
+      <p class="text-xs tracking-widest uppercase text-gray-400 mb-3">You're invited to the wedding of</p>
+      <h1 class="text-3xl font-light text-gray-900 tracking-tight">Charlotte &amp; William</h1>
+      <p class="text-sm text-gray-400 mt-2">Oct 18, 2026 · Ashwood Estate</p>
+    </div>
+
+    <!-- Card -->
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+
+      <!-- Loading -->
+      <div id="loading-state" class="text-center py-8">
+        <div class="w-6 h-6 border-2 border-sage border-t-transparent rounded-full animate-spin mx-auto"></div>
+        <p class="text-xs text-gray-400 mt-3">Loading…</p>
+      </div>
+
+      <!-- Form -->
+      <div id="form-state">
+        <div class="mb-6">
+          <p class="text-sm text-gray-400 mb-1">Hello,</p>
+          <p id="guest-name" class="text-xl font-semibold text-gray-900">John &amp; Jane Smith</p>
+        </div>
+
+        <div class="w-full h-px bg-gray-100 mb-6"></div>
+
+        <form id="rsvp-form" class="space-y-5">
+
+          <div>
+            <label>Will you be joining us?</label>
+            <div class="radio-group">
+              <div class="radio-opt">
+                <input type="radio" name="attendance" id="att-yes" value="yes" />
+                <label for="att-yes">✓ Attending</label>
+              </div>
+              <div class="radio-opt">
+                <input type="radio" name="attendance" id="att-no" value="no" />
+                <label for="att-no">✕ Not attending</label>
+              </div>
+            </div>
+          </div>
+
+          <div id="count-field">
+            <label>Number of guests</label>
+            <input type="number" id="attendee-count" min="1" max="10" value="2" />
+          </div>
+
+          <div>
+            <label>Dietary needs</label>
+            <input type="text" id="dietary" placeholder="Any dietary requirements?" />
+          </div>
+
+          <div>
+            <label>Note to the couple</label>
+            <textarea id="note" rows="3" placeholder="Anything you'd like to share…"></textarea>
+          </div>
+
+          <button type="submit" class="btn">Submit RSVP</button>
+        </form>
+      </div>
+
+      <!-- Success -->
+      <div id="success-state" class="text-center py-6">
+        <div class="w-12 h-12 bg-sage rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h2 class="text-lg font-semibold text-gray-900 mb-2">RSVP received</h2>
+        <p class="text-sm text-gray-500">Thank you! Charlotte &amp; William are looking forward to celebrating with you.</p>
+        <div class="w-8 h-0.5 bg-sage mx-auto mt-6"></div>
+      </div>
+
+    </div>
+
+    <!-- Back link -->
+    <div class="text-center mt-6">
+      <a href="../index.html" class="text-xs text-gray-400 hover:text-gray-600">← dev menu</a>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get('token');
+      const loadingEl = document.getElementById('loading-state');
+      const formEl = document.getElementById('form-state');
+      const nameEl = document.getElementById('guest-name');
+
+      if (token) {
+        loadingEl.style.display = 'block';
+        formEl.style.display = 'none';
+        setTimeout(() => {
+          loadingEl.style.display = 'none';
+          formEl.style.display = 'block';
+          nameEl.textContent = 'John & Jane Smith';
+        }, 700);
+      }
+
+      document.querySelectorAll('input[name="attendance"]').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          document.getElementById('count-field').style.display =
+            e.target.value === 'no' ? 'none' : 'block';
+        });
+      });
+
+      document.getElementById('rsvp-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        formEl.style.display = 'none';
+        document.getElementById('success-state').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>

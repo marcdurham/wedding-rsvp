@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin – Charlotte &amp; William</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Nunito', sans-serif; background: #fef9f0; color: #1f2937; }
+    .pink { color: #ec4899; }
+    table { width: 100%; border-collapse: collapse; }
+    th { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #9ca3af; padding: 0.75rem 1rem; text-align: left; }
+    td { padding: 0.85rem 1rem; font-size: 0.875rem; border-top: 2px solid #fef3f8; }
+    tr:hover td { background: #fff8fc; }
+    .badge { display: inline-block; border-radius: 100px; padding: 0.2rem 0.7rem; font-size: 0.72rem; font-weight: 700; }
+    .badge-yes { background: #dcfce7; color: #15803d; }
+    .badge-no { background: #fee2e2; color: #dc2626; }
+    .note-col { max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #9ca3af; font-size: 0.82rem; }
+    input[type="text"] { border: 2px solid #fbcfe8; border-radius: 100px; padding: 0.4rem 0.9rem; font-family: 'Nunito', sans-serif; font-size: 0.85rem; font-weight: 600; color: #1f2937; background: white; }
+    input[type="text"]:focus { outline: none; border-color: #ec4899; box-shadow: 0 0 0 3px rgba(236,72,153,0.1); }
+    input[type="text"]::placeholder { color: #d1adc0; }
+    .stat-card { background: white; border-radius: 20px; border: 2px solid #fce7f3; }
+    .sidebar { background: white; border-right: 2px solid #fce7f3; }
+    .nav-active { background: linear-gradient(135deg, #fce7f3, #fef3c7); color: #ec4899; }
+  </style>
+</head>
+<body>
+  <div class="flex min-h-screen">
+
+    <!-- Sidebar -->
+    <aside class="sidebar w-56 p-6 flex flex-col flex-shrink-0">
+      <div class="mb-8">
+        <div class="text-3xl mb-2">💍</div>
+        <h2 class="text-base font-black text-gray-800">Charlotte &amp;<br />William</h2>
+        <p class="text-xs font-600 text-gray-400 mt-0.5">Admin Panel 🎊</p>
+      </div>
+      <nav class="flex-1 space-y-1 text-sm font-700">
+        <a href="#" class="nav-active flex items-center gap-2.5 px-3 py-2 rounded-xl font-bold">
+          🏠 Dashboard
+        </a>
+        <a href="#" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-gray-400 hover:bg-pink-50">
+          👥 Guests
+        </a>
+        <a href="#" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-gray-400 hover:bg-pink-50">
+          📊 Reports
+        </a>
+        <a href="#" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-gray-400 hover:bg-pink-50">
+          📥 Export
+        </a>
+      </nav>
+      <div class="mt-auto pt-4 border-t-2 border-pink-100">
+        <a href="rsvp.html?token=demo" class="block text-xs font-600 text-gray-400 hover:text-pink-400 mb-1">← Guest RSVP 🌸</a>
+        <a href="../index.html" class="block text-xs font-600 text-gray-400 hover:text-pink-400">← Dev menu</a>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="flex-1 p-8 overflow-auto">
+
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <h1 class="text-2xl font-black text-gray-800">RSVP Dashboard 🎉</h1>
+          <p class="text-sm font-600 text-gray-400 mt-0.5">Demo mode · No live data</p>
+        </div>
+        <div class="text-xs font-700 text-gray-400 bg-white border-2 border-pink-100 rounded-2xl px-4 py-2">Oct 18, 2026 🗓</div>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-3 gap-5 mb-8">
+        <div class="stat-card p-6">
+          <p class="text-xs uppercase font-800 text-gray-400 tracking-wider mb-2">Total Invited 💌</p>
+          <p class="text-4xl font-black text-gray-800">300</p>
+          <p class="text-xs font-600 text-gray-400 mt-1">guests on the list</p>
+        </div>
+        <div class="stat-card p-6" style="border-color:#bbf7d0;">
+          <p class="text-xs uppercase font-800 text-gray-400 tracking-wider mb-2">Responded ✅</p>
+          <p class="text-4xl font-black" style="color:#15803d;">187</p>
+          <div class="mt-2 h-2 rounded-full bg-green-100 overflow-hidden">
+            <div class="h-full rounded-full bg-green-400" style="width:62%;"></div>
+          </div>
+          <p class="text-xs font-600 text-gray-400 mt-1">62% response rate</p>
+        </div>
+        <div class="stat-card p-6" style="border-color:#fbcfe8;">
+          <p class="text-xs uppercase font-800 text-gray-400 tracking-wider mb-2">Expected 🎊</p>
+          <p class="text-4xl font-black pink">412</p>
+          <p class="text-xs font-600 text-gray-400 mt-1">total attendees</p>
+        </div>
+      </div>
+
+      <!-- Mini stats -->
+      <div class="grid grid-cols-4 gap-4 mb-8">
+        <div class="stat-card p-4 text-center">
+          <p class="text-2xl font-black" style="color:#15803d;">163</p>
+          <p class="text-xs font-700 text-gray-400 mt-0.5">Attending 🥂</p>
+        </div>
+        <div class="stat-card p-4 text-center">
+          <p class="text-2xl font-black text-red-400">24</p>
+          <p class="text-xs font-700 text-gray-400 mt-0.5">Declined 😢</p>
+        </div>
+        <div class="stat-card p-4 text-center">
+          <p class="text-2xl font-black text-yellow-500">113</p>
+          <p class="text-xs font-700 text-gray-400 mt-0.5">Pending 🕐</p>
+        </div>
+        <div class="stat-card p-4 text-center">
+          <p class="text-2xl font-black text-purple-500">50</p>
+          <p class="text-xs font-700 text-gray-400 mt-0.5">Dietary notes 🥗</p>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="stat-card overflow-hidden">
+        <div class="flex items-center justify-between px-5 py-4 border-b-2 border-pink-50">
+          <h2 class="text-base font-black text-gray-800">Guest Responses 📋</h2>
+          <input type="text" placeholder="🔍 Search guests…" id="search-input" onkeyup="filterTable()" style="width:200px;" />
+        </div>
+        <div class="overflow-x-auto">
+          <table id="response-table">
+            <thead>
+              <tr>
+                <th>Guest</th>
+                <th>Status</th>
+                <th>Party</th>
+                <th>Dietary</th>
+                <th>Note</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="table-body">
+              <tr><td class="font-bold">John &amp; Jane Smith</td><td><span class="badge badge-yes">✓ Attending</span></td><td class="font-700">2</td><td class="text-gray-400">—</td><td class="note-col">So excited to celebrate!</td><td class="text-gray-400 text-xs font-600">Apr 5</td></tr>
+              <tr><td class="font-bold">Robert &amp; Mary Johnson</td><td><span class="badge badge-yes">✓ Attending</span></td><td class="font-700">4</td><td class="text-gray-400 text-xs">Gluten-free ×2</td><td class="note-col">Congratulations!</td><td class="text-gray-400 text-xs font-600">Apr 6</td></tr>
+              <tr><td class="font-bold">Emily Chen</td><td><span class="badge badge-yes">✓ Attending</span></td><td class="font-700">1</td><td class="text-gray-400 text-xs">Vegetarian</td><td class="note-col">Wishing you happiness!</td><td class="text-gray-400 text-xs font-600">Apr 7</td></tr>
+              <tr><td class="font-bold">Michael &amp; Sarah Brown</td><td><span class="badge badge-no">✕ Declined</span></td><td class="font-700">—</td><td class="text-gray-400">—</td><td class="note-col">So sorry we can't make it!</td><td class="text-gray-400 text-xs font-600">Apr 8</td></tr>
+              <tr><td class="font-bold">The Williams Family</td><td><span class="badge badge-yes">✓ Attending</span></td><td class="font-700">5</td><td class="text-gray-400 text-xs">Nut allergy ×1</td><td class="note-col">So thrilled for you!</td><td class="text-gray-400 text-xs font-600">Apr 9</td></tr>
+              <tr><td class="font-bold">David &amp; Lisa Park</td><td><span class="badge badge-yes">✓ Attending</span></td><td class="font-700">2</td><td class="text-gray-400">—</td><td class="note-col">Can't wait to dance!</td><td class="text-gray-400 text-xs font-600">Apr 10</td></tr>
+              <tr><td class="font-bold">Grace Thompson</td><td><span class="badge badge-no">✕ Declined</span></td><td class="font-700">—</td><td class="text-gray-400">—</td><td class="note-col">Prior commitment, congrats!</td><td class="text-gray-400 text-xs font-600">Apr 11</td></tr>
+              <tr><td class="font-bold">James &amp; Patricia Wilson</td><td><span class="badge badge-yes">✓ Attending</span></td><td class="font-700">3</td><td class="text-gray-400 text-xs">Vegan ×1</td><td class="note-col">The day is finally here!</td><td class="text-gray-400 text-xs font-600">Apr 12</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="px-5 py-3 border-t-2 border-pink-50 flex items-center justify-between">
+          <span class="text-xs font-600 text-gray-400">Showing 8 of 187 🌸</span>
+          <a href="#" class="text-xs font-700 pink">Export CSV →</a>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    function filterTable() {
+      const filter = document.getElementById('search-input').value.toLowerCase();
+      document.querySelectorAll('#table-body tr').forEach(row => {
+        row.style.display = row.textContent.toLowerCase().includes(filter) ? '' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
