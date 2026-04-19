@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RSVP – Charlotte &amp; William</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Lato', sans-serif; background-color: #faf7f2; color: #4a3728; }
+    h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+    .gold { color: #c9a96e; }
+    .border-gold { border-color: #c9a96e; }
+    .bg-gold { background-color: #c9a96e; }
+    .bg-cream { background-color: #faf7f2; }
+    .divider { display: flex; align-items: center; gap: 1rem; }
+    .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: #c9a96e; opacity: 0.5; }
+    input, textarea, select {
+      background: #fff;
+      border: 1px solid #d8c9a8;
+      border-radius: 4px;
+      padding: 0.6rem 0.9rem;
+      width: 100%;
+      color: #4a3728;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: #c9a96e;
+      box-shadow: 0 0 0 3px rgba(201,169,110,0.15);
+    }
+    .btn-primary {
+      background: #c9a96e;
+      color: #fff;
+      font-family: 'Lato', sans-serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.85rem 2.5rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-primary:hover { background: #b8934f; transform: translateY(-1px); }
+    .ornament { color: #c9a96e; font-size: 1.4rem; }
+    #loading-state, #success-state { display: none; }
+    #form-state { display: block; }
+    label { font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; color: #7a6248; font-weight: 700; display: block; margin-bottom: 0.3rem; }
+  </style>
+</head>
+<body class="min-h-screen py-10 px-4">
+
+  <!-- Decorative top border -->
+  <div class="max-w-lg mx-auto">
+    <div class="text-center text-gold text-xs tracking-widest uppercase mb-6" style="letter-spacing:0.3em;">❧ ❧ ❧</div>
+
+    <!-- Card -->
+    <div class="bg-white shadow-lg" style="border-top: 4px solid #c9a96e;">
+
+      <!-- Header -->
+      <div class="text-center px-8 pt-10 pb-6" style="background: linear-gradient(to bottom, #fdf8f1, #fff);">
+        <p class="text-xs tracking-widest uppercase gold mb-3" style="letter-spacing:0.25em;">You are cordially invited to celebrate the marriage of</p>
+        <h1 class="text-4xl italic mb-1" style="font-family:'Playfair Display',serif; color:#4a3728;">Charlotte</h1>
+        <div class="divider my-2 px-8"><span class="gold text-sm italic">&amp;</span></div>
+        <h1 class="text-4xl italic mb-4" style="font-family:'Playfair Display',serif; color:#4a3728;">William</h1>
+        <p class="text-sm text-gray-500" style="letter-spacing:0.08em;">Saturday, October 18, 2026 · 4:00 PM</p>
+        <p class="text-sm text-gray-500">The Grand Ballroom · Ashwood Estate</p>
+      </div>
+
+      <div class="px-8 pb-10">
+        <div class="divider mb-8"><span class="ornament">✦</span></div>
+
+        <!-- Loading state -->
+        <div id="loading-state" class="text-center py-8">
+          <div class="inline-block w-8 h-8 border-2 border-gold border-t-transparent rounded-full animate-spin"></div>
+          <p class="mt-3 text-sm text-gray-500 italic">Retrieving your invitation…</p>
+        </div>
+
+        <!-- Form state -->
+        <div id="form-state">
+          <div class="text-center mb-6">
+            <p class="text-base" style="font-family:'Playfair Display',serif;">We joyfully invite</p>
+            <p id="guest-name" class="text-2xl font-semibold mt-1" style="font-family:'Playfair Display',serif; color:#c9a96e;">John &amp; Jane Smith</p>
+            <p class="text-sm text-gray-500 mt-1 italic">to kindly respond by August 15, 2026</p>
+          </div>
+
+          <form id="rsvp-form" class="space-y-5">
+            <div>
+              <label>Will you attend?</label>
+              <select id="attendance" required>
+                <option value="">Please select…</option>
+                <option value="yes">Joyfully accepts</option>
+                <option value="no">Regretfully declines</option>
+              </select>
+            </div>
+
+            <div id="count-field">
+              <label>Number of guests attending</label>
+              <input type="number" id="attendee-count" min="1" max="10" value="2" />
+              <p class="text-xs text-gray-400 mt-1 italic">Including yourself</p>
+            </div>
+
+            <div>
+              <label>Dietary requirements</label>
+              <input type="text" id="dietary" placeholder="e.g. vegetarian, gluten free, allergies…" />
+            </div>
+
+            <div>
+              <label>A message for the couple</label>
+              <textarea id="note" rows="4" placeholder="Share your warm wishes…"></textarea>
+            </div>
+
+            <div class="text-center pt-2">
+              <button type="submit" class="btn-primary">Send my RSVP</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Success state -->
+        <div id="success-state" class="text-center py-6">
+          <div class="text-5xl mb-4">💌</div>
+          <h2 class="text-2xl italic mb-2" style="font-family:'Playfair Display',serif; color:#c9a96e;">Thank You!</h2>
+          <p class="text-gray-600 leading-relaxed">Your RSVP has been received.<br />Charlotte &amp; William look forward to celebrating with you.</p>
+          <div class="divider my-6 px-8"><span class="ornament">✦</span></div>
+          <p class="text-xs text-gray-400 italic">A confirmation has been noted in our records.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <p class="text-center text-xs text-gray-400 mt-6" style="letter-spacing:0.12em;">❧ Charlotte &amp; William · 2026 ❧</p>
+    <div class="text-center mt-3">
+      <a href="../index.html" class="text-xs text-gray-400 hover:text-gray-600 underline">← Back to dev menu</a>
+    </div>
+  </div>
+
+  <script>
+    // Simulate loading the guest name from the token in the URL
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get('token');
+      const loadingEl = document.getElementById('loading-state');
+      const formEl = document.getElementById('form-state');
+      const nameEl = document.getElementById('guest-name');
+
+      if (token) {
+        loadingEl.style.display = 'block';
+        formEl.style.display = 'none';
+        // Simulate API call delay
+        setTimeout(() => {
+          loadingEl.style.display = 'none';
+          formEl.style.display = 'block';
+          nameEl.textContent = 'John & Jane Smith';
+        }, 800);
+      }
+
+      // Handle attendance change
+      document.getElementById('attendance').addEventListener('change', (e) => {
+        document.getElementById('count-field').style.display =
+          e.target.value === 'no' ? 'none' : 'block';
+      });
+
+      // Handle form submit
+      document.getElementById('rsvp-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        formEl.style.display = 'none';
+        const successEl = document.getElementById('success-state');
+        successEl.style.display = 'block';
+        // Scroll to top of card
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>

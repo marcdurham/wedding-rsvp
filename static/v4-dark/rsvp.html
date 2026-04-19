@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RSVP – Charlotte &amp; William</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Raleway', sans-serif; background-color: #12101a; color: #e8ddd0; }
+    h1, h2, .serif { font-family: 'Cormorant Garamond', serif; }
+    .gold { color: #c8a882; }
+    .blush { color: #e8c5c5; }
+    .bg-card { background-color: #1e1a2e; }
+    .border-gold { border-color: #c8a882; }
+    input, textarea, select {
+      background: #2a2540;
+      border: 1px solid #3d3558;
+      border-radius: 4px;
+      padding: 0.7rem 1rem;
+      width: 100%;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.9rem;
+      color: #e8ddd0;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: #c8a882;
+      box-shadow: 0 0 0 3px rgba(200,168,130,0.12);
+    }
+    input::placeholder, textarea::placeholder { color: #665e7a; }
+    select option { background: #2a2540; }
+    label { font-size: 0.72rem; font-weight: 500; color: #a090b0; letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 0.4rem; }
+    .btn {
+      background: transparent;
+      border: 1px solid #c8a882;
+      color: #c8a882;
+      border-radius: 4px;
+      padding: 0.85rem 2rem;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn:hover { background: #c8a882; color: #12101a; }
+    #loading-state, #success-state { display: none; }
+    #form-state { display: block; }
+    .star-line { text-align: center; color: #c8a882; opacity: 0.4; letter-spacing: 0.5rem; margin: 1.5rem 0; }
+    .radio-group { display: flex; gap: 0.5rem; }
+    .radio-opt { flex: 1; }
+    .radio-opt input[type="radio"] { display: none; }
+    .radio-opt label {
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid #3d3558;
+      border-radius: 4px;
+      padding: 0.7rem 0.5rem;
+      cursor: pointer;
+      text-align: center;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #a090b0;
+      transition: all 0.15s;
+    }
+    .radio-opt input[type="radio"]:checked + label {
+      border-color: #c8a882; color: #c8a882; background: rgba(200,168,130,0.07);
+    }
+    /* Glow effect on card */
+    .glow { box-shadow: 0 0 80px rgba(200,168,130,0.08), 0 20px 60px rgba(0,0,0,0.5); }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center py-12 px-4">
+
+  <div class="w-full max-w-md">
+
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <div class="star-line" style="opacity:0.5;">✦ ✦ ✦</div>
+      <p class="text-xs tracking-widest uppercase mb-3" style="color:#a090b0; letter-spacing:0.3em;">You are invited to witness the union of</p>
+      <h1 class="text-5xl italic" style="font-family:'Cormorant Garamond',serif; color:#c8a882; line-height:1.1;">Charlotte</h1>
+      <p class="text-sm italic my-1" style="color:#665e7a; font-family:'Cormorant Garamond',serif;">&amp;</p>
+      <h1 class="text-5xl italic" style="font-family:'Cormorant Garamond',serif; color:#c8a882; line-height:1.1;">William</h1>
+      <p class="text-xs mt-4 tracking-widest" style="color:#665e7a; letter-spacing:0.18em;">OCTOBER 18 · 2026 · ASHWOOD ESTATE</p>
+      <div class="star-line" style="opacity:0.3;">✦ ✦ ✦</div>
+    </div>
+
+    <!-- Card -->
+    <div class="glow rounded-sm p-8" style="background:#1e1a2e; border: 1px solid #2e2840;">
+
+      <!-- Loading -->
+      <div id="loading-state" class="text-center py-8">
+        <div class="inline-block w-6 h-6 border border-gold border-t-transparent rounded-full animate-spin" style="border-color:#c8a882; border-top-color:transparent;"></div>
+        <p class="text-xs mt-3 italic" style="color:#665e7a;">Retrieving your invitation…</p>
+      </div>
+
+      <!-- Form -->
+      <div id="form-state">
+        <div class="mb-7">
+          <p class="text-xs uppercase tracking-widest mb-1" style="color:#665e7a; letter-spacing:0.2em;">Addressed to</p>
+          <p id="guest-name" class="text-2xl" style="font-family:'Cormorant Garamond',serif; color:#e8ddd0;">John &amp; Jane Smith</p>
+          <p class="text-xs mt-2 italic" style="color:#665e7a;">Kindly reply by August 15, 2026</p>
+        </div>
+
+        <form id="rsvp-form" class="space-y-5">
+          <div>
+            <label>Your response</label>
+            <div class="radio-group">
+              <div class="radio-opt">
+                <input type="radio" name="attendance" id="att-yes" value="yes" />
+                <label for="att-yes">Accepts</label>
+              </div>
+              <div class="radio-opt">
+                <input type="radio" name="attendance" id="att-no" value="no" />
+                <label for="att-no">Declines</label>
+              </div>
+            </div>
+          </div>
+
+          <div id="count-field">
+            <label>Number of seats</label>
+            <input type="number" id="attendee-count" min="1" max="10" value="2" />
+          </div>
+
+          <div>
+            <label>Dietary requirements</label>
+            <input type="text" id="dietary" placeholder="Any dietary needs or allergies?" />
+          </div>
+
+          <div>
+            <label>A message for the couple</label>
+            <textarea id="note" rows="4" placeholder="Your warm wishes…"></textarea>
+          </div>
+
+          <button type="submit" class="btn">Send RSVP</button>
+        </form>
+      </div>
+
+      <!-- Success -->
+      <div id="success-state" class="text-center py-8">
+        <div class="text-4xl mb-5">✨</div>
+        <h2 class="text-3xl italic mb-3" style="font-family:'Cormorant Garamond',serif; color:#c8a882;">Thank You</h2>
+        <p class="text-sm leading-relaxed" style="color:#a090b0;">Your RSVP has been received.<br />Charlotte &amp; William look forward to an unforgettable evening with you.</p>
+        <div class="star-line mt-6">✦ ✦ ✦</div>
+      </div>
+
+    </div>
+
+    <div class="text-center mt-6">
+      <a href="../index.html" class="text-xs hover:underline" style="color:#4a4265;">← dev menu</a>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get('token');
+      const loadingEl = document.getElementById('loading-state');
+      const formEl = document.getElementById('form-state');
+      const nameEl = document.getElementById('guest-name');
+
+      if (token) {
+        loadingEl.style.display = 'block';
+        formEl.style.display = 'none';
+        setTimeout(() => {
+          loadingEl.style.display = 'none';
+          formEl.style.display = 'block';
+          nameEl.innerHTML = 'John &amp; Jane Smith';
+        }, 900);
+      }
+
+      document.querySelectorAll('input[name="attendance"]').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          document.getElementById('count-field').style.display =
+            e.target.value === 'no' ? 'none' : 'block';
+        });
+      });
+
+      document.getElementById('rsvp-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        formEl.style.display = 'none';
+        document.getElementById('success-state').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>

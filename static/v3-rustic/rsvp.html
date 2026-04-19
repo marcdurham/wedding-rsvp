@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RSVP – Charlotte &amp; William</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Open Sans', sans-serif; background-color: #f4ede4; color: #3d2b1f; }
+    h1, h2, .serif { font-family: 'Lora', serif; }
+    .terra { color: #8b5e3c; }
+    .bg-terra { background-color: #8b5e3c; }
+    .forest { color: #5a7a52; }
+    .bg-forest { background-color: #5a7a52; }
+    input, textarea, select {
+      background: #fffbf7;
+      border: 1.5px solid #d4b896;
+      border-radius: 6px;
+      padding: 0.65rem 0.9rem;
+      width: 100%;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.9rem;
+      color: #3d2b1f;
+      transition: border-color 0.2s;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: #8b5e3c;
+      box-shadow: 0 0 0 3px rgba(139,94,60,0.12);
+    }
+    label { font-size: 0.78rem; font-weight: 600; color: #7a5c40; letter-spacing: 0.04em; display: block; margin-bottom: 0.35rem; }
+    .btn { background: #5a7a52; color: white; border: none; border-radius: 6px; padding: 0.8rem 2rem; font-family: 'Open Sans', sans-serif; font-size: 0.9rem; font-weight: 600; cursor: pointer; width: 100%; transition: background 0.2s; letter-spacing: 0.02em; }
+    .btn:hover { background: #486343; }
+    #loading-state, #success-state { display: none; }
+    #form-state { display: block; }
+    .leaf { display: inline-block; }
+  </style>
+</head>
+<body class="min-h-screen py-10 px-4">
+  <div class="max-w-md mx-auto">
+
+    <!-- Decorative header -->
+    <div class="text-center mb-6">
+      <div class="text-4xl mb-2">🌿</div>
+      <p class="text-xs tracking-widest uppercase" style="color:#8b5e3c; letter-spacing:0.2em;">The Wedding of</p>
+      <h1 class="text-3xl mt-1" style="font-family:'Lora',serif; color:#3d2b1f;">Charlotte &amp; William</h1>
+      <p class="text-sm mt-1" style="color:#7a6050;">Saturday, October 18th, 2026</p>
+      <p class="text-sm" style="color:#7a6050;">Ashwood Estate · Garden Ceremony</p>
+    </div>
+
+    <!-- Illustrated top ornament -->
+    <div class="text-center mb-4 text-lg" style="color:#8b5e3c; opacity:0.6;">❦ ❦ ❦</div>
+
+    <!-- Card -->
+    <div class="rounded-xl shadow-md overflow-hidden" style="background:#fffbf7; border: 1px solid #e8d5c0;">
+
+      <!-- Top band -->
+      <div class="h-2" style="background: linear-gradient(to right, #5a7a52, #8b5e3c, #5a7a52);"></div>
+
+      <div class="p-7">
+
+        <!-- Loading -->
+        <div id="loading-state" class="text-center py-8">
+          <div class="text-3xl animate-pulse">🌱</div>
+          <p class="text-sm mt-2" style="color:#a07850; font-style:italic;">Loading your invitation…</p>
+        </div>
+
+        <!-- Form -->
+        <div id="form-state">
+          <div class="mb-5 p-4 rounded-lg" style="background:#f4ede4;">
+            <p class="text-xs uppercase tracking-wider" style="color:#8b5e3c;">Dear Guest,</p>
+            <p id="guest-name" class="text-xl font-semibold mt-1" style="font-family:'Lora',serif; color:#3d2b1f;">John &amp; Jane Smith</p>
+            <p class="text-xs mt-1 italic" style="color:#9a7a60;">Please respond by August 15, 2026</p>
+          </div>
+
+          <form id="rsvp-form" class="space-y-4">
+
+            <div>
+              <label>Will you be joining us?</label>
+              <select id="attendance" required>
+                <option value="">Please choose…</option>
+                <option value="yes">🎉 Happily accepts!</option>
+                <option value="no">😔 Regretfully declines</option>
+              </select>
+            </div>
+
+            <div id="count-field">
+              <label>Number of guests attending</label>
+              <input type="number" id="attendee-count" min="1" max="10" value="2" />
+            </div>
+
+            <div>
+              <label>Any dietary needs?</label>
+              <input type="text" id="dietary" placeholder="Vegetarian, gluten-free, nut allergy…" />
+            </div>
+
+            <div>
+              <label>A note for the couple 🌸</label>
+              <textarea id="note" rows="4" placeholder="Share your warm wishes for Charlotte &amp; William…"></textarea>
+            </div>
+
+            <button type="submit" class="btn">🌿 Send RSVP</button>
+          </form>
+        </div>
+
+        <!-- Success -->
+        <div id="success-state" class="text-center py-6">
+          <div class="text-5xl mb-4">🌸</div>
+          <h2 class="text-2xl mb-2" style="font-family:'Lora',serif; color:#5a7a52;">Thank You!</h2>
+          <p class="text-sm leading-relaxed" style="color:#7a5c40;">Your RSVP has been received.<br />We can't wait to celebrate with you in the garden!</p>
+          <div class="mt-6 text-sm text-center" style="color:#8b5e3c; opacity:0.6;">❦ ❦ ❦</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="text-center mt-5">
+      <a href="../index.html" class="text-xs hover:underline" style="color:#9a7a60;">← Back to dev menu</a>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get('token');
+      const loadingEl = document.getElementById('loading-state');
+      const formEl = document.getElementById('form-state');
+      const nameEl = document.getElementById('guest-name');
+
+      if (token) {
+        loadingEl.style.display = 'block';
+        formEl.style.display = 'none';
+        setTimeout(() => {
+          loadingEl.style.display = 'none';
+          formEl.style.display = 'block';
+          nameEl.innerHTML = 'John &amp; Jane Smith';
+        }, 800);
+      }
+
+      document.getElementById('attendance').addEventListener('change', (e) => {
+        document.getElementById('count-field').style.display =
+          e.target.value === 'no' ? 'none' : 'block';
+      });
+
+      document.getElementById('rsvp-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        formEl.style.display = 'none';
+        document.getElementById('success-state').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>

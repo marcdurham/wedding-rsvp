@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RSVP – Charlotte &amp; William</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Nunito', sans-serif; background: linear-gradient(135deg, #fef9c3 0%, #fce7f3 50%, #e0f2fe 100%); min-height: 100vh; }
+    .pink { color: #ec4899; }
+    .bg-pink { background-color: #ec4899; }
+    .coral { color: #f97316; }
+    .bg-coral { background-color: #f97316; }
+    input, textarea, select {
+      border: 2px solid #fbcfe8;
+      border-radius: 12px;
+      padding: 0.7rem 1rem;
+      width: 100%;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.95rem;
+      color: #1f2937;
+      background: white;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: #ec4899;
+      box-shadow: 0 0 0 4px rgba(236,72,153,0.12);
+    }
+    label { font-size: 0.82rem; font-weight: 700; color: #6b7280; display: block; margin-bottom: 0.35rem; }
+    .btn {
+      background: linear-gradient(135deg, #ec4899, #f97316);
+      color: white;
+      border: none;
+      border-radius: 100px;
+      padding: 0.9rem 2rem;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      width: 100%;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 15px rgba(236,72,153,0.35);
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(236,72,153,0.4); }
+    .btn:active { transform: translateY(0); }
+    #loading-state, #success-state { display: none; }
+    #form-state { display: block; }
+    .pill-radio { display: flex; gap: 0.75rem; }
+    .pill-radio .opt input[type="radio"] { display: none; }
+    .pill-radio .opt { flex: 1; }
+    .pill-radio .opt label {
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid #fbcfe8;
+      border-radius: 100px;
+      padding: 0.65rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #6b7280;
+      text-transform: none;
+      letter-spacing: 0;
+      transition: all 0.15s;
+    }
+    .pill-radio .opt input[type="radio"]:checked + label {
+      border-color: #ec4899;
+      background: linear-gradient(135deg, #fce7f3, #fee2e2);
+      color: #ec4899;
+    }
+    /* Bounce animation */
+    @keyframes bounceIn {
+      0% { transform: scale(0.3); opacity: 0; }
+      50% { transform: scale(1.15); }
+      70% { transform: scale(0.95); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .bounce-in { animation: bounceIn 0.6s ease forwards; }
+    /* Confetti dot decorations */
+    .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; }
+  </style>
+</head>
+<body class="py-10 px-4">
+  <div class="max-w-md mx-auto">
+
+    <!-- Header -->
+    <div class="text-center mb-6">
+      <div class="text-5xl mb-3">💍</div>
+      <h1 class="text-3xl font-black text-gray-800" style="line-height:1.1;">Charlotte &amp;</h1>
+      <h1 class="text-3xl font-black" style="background: linear-gradient(135deg,#ec4899,#f97316); -webkit-background-clip:text; -webkit-text-fill-color:transparent; line-height:1.1;">William!</h1>
+      <p class="text-sm font-600 text-gray-500 mt-2">🗓 October 18, 2026 · Ashwood Estate 🌳</p>
+      <div class="flex justify-center gap-1 mt-3">
+        <span class="dot" style="background:#ec4899;"></span>
+        <span class="dot" style="background:#f97316;"></span>
+        <span class="dot" style="background:#3b82f6;"></span>
+        <span class="dot" style="background:#a78bfa;"></span>
+        <span class="dot" style="background:#34d399;"></span>
+      </div>
+    </div>
+
+    <!-- Card -->
+    <div class="bg-white rounded-3xl shadow-xl p-7" style="border: 2px solid #fce7f3;">
+
+      <!-- Loading -->
+      <div id="loading-state" class="text-center py-8">
+        <div class="text-4xl animate-bounce">🎉</div>
+        <p class="text-sm font-semibold text-gray-500 mt-3">Loading your invite…</p>
+      </div>
+
+      <!-- Form -->
+      <div id="form-state">
+        <div class="mb-6 p-4 rounded-2xl" style="background: linear-gradient(135deg,#fce7f3,#fef3c7);">
+          <p class="text-xs font-700 text-gray-500 uppercase tracking-wider mb-1">Hey there! 👋</p>
+          <p id="guest-name" class="text-xl font-black text-gray-800">John &amp; Jane Smith</p>
+          <p class="text-xs text-gray-500 mt-1">Please RSVP by August 15, 2026 🌸</p>
+        </div>
+
+        <form id="rsvp-form" class="space-y-4">
+
+          <div>
+            <label>Coming to the party? 🎊</label>
+            <div class="pill-radio">
+              <div class="opt">
+                <input type="radio" name="attendance" id="att-yes" value="yes" />
+                <label for="att-yes">🎉 Yes, woohoo!</label>
+              </div>
+              <div class="opt">
+                <input type="radio" name="attendance" id="att-no" value="no" />
+                <label for="att-no">😢 Can't make it</label>
+              </div>
+            </div>
+          </div>
+
+          <div id="count-field">
+            <label>How many people? 👫</label>
+            <input type="number" id="attendee-count" min="1" max="10" value="2" />
+          </div>
+
+          <div>
+            <label>Any dietary needs? 🥗</label>
+            <input type="text" id="dietary" placeholder="Vegetarian, vegan, allergies…" />
+          </div>
+
+          <div>
+            <label>Leave the couple a message! 💌</label>
+            <textarea id="note" rows="3" placeholder="Share the love!"></textarea>
+          </div>
+
+          <button type="submit" class="btn">🎊 Send my RSVP!</button>
+        </form>
+      </div>
+
+      <!-- Success -->
+      <div id="success-state" class="text-center py-6">
+        <div class="text-6xl mb-4 bounce-in">🎉</div>
+        <h2 class="text-2xl font-black text-gray-800 mb-2">You're all set!</h2>
+        <p class="text-gray-500 text-sm leading-relaxed">Charlotte &amp; William received your RSVP!<br />They can't wait to celebrate with you! 🥂</p>
+        <div class="flex justify-center gap-1 mt-6">
+          <span class="dot" style="background:#ec4899;"></span>
+          <span class="dot" style="background:#f97316;"></span>
+          <span class="dot" style="background:#3b82f6;"></span>
+          <span class="dot" style="background:#a78bfa;"></span>
+          <span class="dot" style="background:#34d399;"></span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center mt-5">
+      <a href="../index.html" class="text-xs text-gray-400 hover:text-gray-600">← dev menu</a>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get('token');
+      const loadingEl = document.getElementById('loading-state');
+      const formEl = document.getElementById('form-state');
+      const nameEl = document.getElementById('guest-name');
+
+      if (token) {
+        loadingEl.style.display = 'block';
+        formEl.style.display = 'none';
+        setTimeout(() => {
+          loadingEl.style.display = 'none';
+          formEl.style.display = 'block';
+          nameEl.innerHTML = 'John &amp; Jane Smith';
+        }, 800);
+      }
+
+      document.querySelectorAll('input[name="attendance"]').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          document.getElementById('count-field').style.display =
+            e.target.value === 'no' ? 'none' : 'block';
+        });
+      });
+
+      document.getElementById('rsvp-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        formEl.style.display = 'none';
+        document.getElementById('success-state').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
