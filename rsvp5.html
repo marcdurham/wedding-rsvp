@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding RSVP - Version 5: Interactive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function submitForm() {
+            const btn = document.getElementById('submit-btn');
+            btn.innerHTML = 'Submitting...';
+            btn.classList.add('animate-pulse');
+            setTimeout(() => {
+                alert('RSVP Submitted! Thank you!');
+                btn.innerHTML = 'Submit RSVP';
+                btn.classList.remove('animate-pulse');
+            }, 1000);
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-blue-100 to-purple-100 min-h-screen flex items-center justify-center">
+    <div class="max-w-sm mx-auto bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform">
+        <h1 class="text-xl font-bold text-center mb-4">Hi John!</h1>
+        <p class="text-center mb-6">We're thrilled you're invited.</p>
+        <form onsubmit="submitForm(); return false;">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Number of Guests</label>
+                <input type="number" min="0" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-500" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Note</label>
+                <textarea rows="3" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-500"></textarea>
+            </div>
+            <button id="submit-btn" type="submit" class="w-full bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded transition-colors">Submit RSVP</button>
+        </form>
+    </div>
+</body>
+</html>

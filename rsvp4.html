@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding RSVP - Version 4: Minimalist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white min-h-screen flex items-center justify-center">
+    <div class="max-w-xs mx-auto p-6">
+        <h1 class="text-lg text-center mb-8">Hi John!</h1>
+        <form onsubmit="alert('RSVP Submitted!'); return false;" class="space-y-6">
+            <div>
+                <input type="number" min="0" placeholder="Number of Guests" class="w-full border-b-2 border-gray-300 py-2 focus:outline-none focus:border-black" required>
+            </div>
+            <div>
+                <textarea rows="2" placeholder="Note" class="w-full border-b-2 border-gray-300 py-2 focus:outline-none focus:border-black"></textarea>
+            </div>
+            <button type="submit" class="w-full bg-black text-white py-2 rounded">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

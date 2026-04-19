@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding RSVP - Version 2: Elegant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-pink-100 min-h-screen flex items-center justify-center">
+    <div class="max-w-sm mx-auto bg-white p-8 rounded-lg shadow-lg border-4 border-pink-200">
+        <h1 class="text-2xl font-serif text-pink-600 text-center mb-4">Hi John!</h1>
+        <p class="text-center text-pink-500 mb-6">We're excited to celebrate with you.</p>
+        <form onsubmit="alert('RSVP Submitted! Thank you.'); return false;">
+            <div class="mb-4">
+                <label class="block text-pink-700 text-sm font-bold mb-2">Number of Guests</label>
+                <input type="number" min="0" class="border-pink-300 border-2 rounded w-full py-2 px-3 text-gray-700 focus:border-pink-500 focus:outline-none" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-pink-700 text-sm font-bold mb-2">Note</label>
+                <textarea rows="3" class="border-pink-300 border-2 rounded w-full py-2 px-3 text-gray-700 focus:border-pink-500 focus:outline-none"></textarea>
+            </div>
+            <button type="submit" class="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-4 rounded-full">Submit RSVP</button>
+        </form>
+    </div>
+</body>
+</html>
